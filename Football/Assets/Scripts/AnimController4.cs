@@ -22,7 +22,7 @@ public class AnimController4 : MonoBehaviour {
     //球飞出的速度
     public float speed = 10;
     //判断最后一下踢球是否还在移动
-    private bool move = true;
+    private bool move = false;
     int playCount;
     public bool isPlaying = false;
 
@@ -102,7 +102,8 @@ public class AnimController4 : MonoBehaviour {
                     mainUI.textRight.text = Global.TEXT_RIGHT;
                 }
                 Debug.Log("------------------"+playCount);
-                StartCoroutine("StartShoot");
+                //StartCoroutine("StartShoot");
+                move = true;
             }
         }
 
@@ -114,34 +115,51 @@ public class AnimController4 : MonoBehaviour {
             camera_end.SetActive(true);
         }
 
-    }
-
-
-    //射门左
-    IEnumerator StartShoot()
-    {
-
-        while (move)
+        //最后踢球
+        if (move)
         {
-            Vector3 targetPos = target.transform.position;
-
-            //让始终它朝着目标  
-            ball.transform.LookAt(targetPos);
-
-            //计算弧线中的夹角  
-            float angle = Mathf.Min(1, Vector3.Distance(ball.transform.position, targetPos) / distanceToTarget) * 45;
-            ball.transform.rotation = ball.transform.rotation * Quaternion.Euler(Mathf.Clamp(-angle, -42, 42), 0, 0);
-            float currentDist = Vector3.Distance(ball.transform.position, target.transform.position);
-            if (currentDist < 0.5f)
-                move = false;
-            ball.transform.Translate(Vector3.forward * Mathf.Min(speed * Time.deltaTime, currentDist));
-
-            yield return null;
+            Shoot();
         }
-        yield return new WaitForSeconds(1.2f);
-        camera_main.SetActive(false);
-        camera_end.SetActive(true);
     }
+    //最后踢球
+    void Shoot()
+    {
+        Vector3 targetPos = target.transform.position;
+        //让始终它朝着目标  
+        ball.transform.LookAt(targetPos);
+        //计算弧线中的夹角  
+        float angle = Mathf.Min(1, Vector3.Distance(ball.transform.position, targetPos) / distanceToTarget) * 45;
+        ball.transform.rotation = ball.transform.rotation * Quaternion.Euler(Mathf.Clamp(-angle, -42, 42), 0, 0);
+        float currentDist = Vector3.Distance(ball.transform.position, target.transform.position);
+        if (currentDist < 0.5f)
+            move = false;
+        ball.transform.Translate(Vector3.forward * Mathf.Min(speed * Time.deltaTime, currentDist));
+    }
+
+    ////射门左
+    //IEnumerator StartShoot()
+    //{
+
+    //    while (move)
+    //    {
+    //        Vector3 targetPos = target.transform.position;
+
+    //        //让始终它朝着目标  
+    //        ball.transform.LookAt(targetPos);
+
+    //        //计算弧线中的夹角  
+    //        float angle = Mathf.Min(1, Vector3.Distance(ball.transform.position, targetPos) / distanceToTarget) * 45;
+    //        ball.transform.rotation = ball.transform.rotation * Quaternion.Euler(Mathf.Clamp(-angle, -42, 42), 0, 0);
+    //        float currentDist = Vector3.Distance(ball.transform.position, target.transform.position);
+    //        if (currentDist < 0.5f)
+    //            move = false;
+    //        ball.transform.Translate(Vector3.forward * Mathf.Min(speed * Time.deltaTime, currentDist));
+    //        yield return null;
+    //    }
+    //    yield return new WaitForSeconds(1.2f);
+    //    camera_main.SetActive(false);
+    //    camera_end.SetActive(true);
+    //}
 
 
     //左脚踢球
