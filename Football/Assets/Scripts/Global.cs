@@ -21,4 +21,8 @@ public class Global  {
     public const int TURNNING_LEFT = 3;
     public const int WAITING_TURNRIGHT = 5;
     public const int TURNNING_RIGHT = 2;
+
+    //相机移动时间
+    public const float TIME_ANIMATOR = 19.0f;
+    public const float TIME_GATHER = 5;
 }

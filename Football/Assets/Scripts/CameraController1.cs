@@ -22,7 +22,7 @@ public class CameraController1 : MonoBehaviour {
     //相机与人的动态距离
     float distance;
     //移动时间
-    public float smoothTime = 3.0F;
+    public float smoothTime = 10.0F;
 
     private Vector3 velocity = Vector3.zero;
 
@@ -66,7 +66,7 @@ public class CameraController1 : MonoBehaviour {
         if (stateInfo.IsName("Idle_Neutral") && distance > Global.DISTANCE_CAMERA_AVATAR)
         {
             transform.position = Vector3.SmoothDamp(transform.position,
-                transform.position + new Vector3(0, 0, initDistance), ref velocity, smoothTime);
+                transform.position + new Vector3(0, 0, initDistance*5), ref velocity, smoothTime);
             cameraState = Global.WALKING;
         }
         switch (cameraState)

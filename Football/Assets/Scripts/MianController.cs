@@ -6,7 +6,7 @@ using System.IO;
 public class MianController : MonoBehaviour {
 
     public string filePath;
-    private Timer timer;
+    public Timer timer;
     public string content;
 
     // Use this for initialization
@@ -23,6 +23,7 @@ public class MianController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timer.Update(Time.deltaTime);
+        
 	}
 
     public void WriteFileByLine(string file_path, string file_name, string str_info)
@@ -51,19 +52,19 @@ public class MianController : MonoBehaviour {
         if (content.Equals("0"))
         {
             content = "1";
-            ChangeTimer(3f, content);
+            ChangeTimer(Global.TIME_GATHER, content);
         }
         //等待播放动画
         else
         {
             content = "0";
-            ChangeTimer(14.5f, content);
+            ChangeTimer(Global.TIME_ANIMATOR, content);
         }
     }
 
     public void ChangeTimer(float time)
     {
-        
+        timer.tick -= Test;   
         timer.Stop();
         timer = new Timer(time);
         timer.tick += Test;
@@ -73,6 +74,7 @@ public class MianController : MonoBehaviour {
     public void ChangeTimer(float time, string content)
     {
         WriteFileByLine(filePath, "test.txt", content);
+        timer.tick -= Test;
         timer.Stop();
         timer = new Timer(time);
         timer.tick += Test;

@@ -29,6 +29,8 @@ public class AnimController4 : MonoBehaviour {
     MianController mainController;
     MainUI mainUI;
 
+    Timer timer;
+
     // Use this for initialization
     void Start()
     {
@@ -52,6 +54,16 @@ public class AnimController4 : MonoBehaviour {
 
         mainController = GameObject.Find("MainCamera").GetComponent<MianController>();
         mainUI = GameObject.Find("Canvas1").GetComponent<MainUI>();
+
+        timer = new Timer(2.5f);
+        timer.tick += Test;
+        timer.Start();
+    }
+
+    void Test()
+    {
+        camera_main.SetActive(false);
+        camera_end.SetActive(true);
     }
 
     // Update is called once per frame
@@ -69,7 +81,7 @@ public class AnimController4 : MonoBehaviour {
             //    isPlaying = true;
             //}
             playLeft();
-            mainController.ChangeTimer(17f,"0");
+            mainController.ChangeTimer(Global.TIME_ANIMATOR,"0");
             mainController.content = "0";
             mainUI.textLeft.text = Global.TEXT_LEFT;
             mainUI.textRight.text = "";
@@ -78,29 +90,30 @@ public class AnimController4 : MonoBehaviour {
         {
             //isPlaying = true;
             playRight();
-            mainController.ChangeTimer(17f,"0");
+            mainController.ChangeTimer(Global.TIME_ANIMATOR, "0");
             mainController.content = "0";
             mainUI.textLeft.text = "";
             mainUI.textRight.text = Global.TEXT_RIGHT;
         }
 
-        if ( Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.R) && mainController.content == "0")
+        if ( Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.R) && mainController.content == "1")
         {
             //最后一下，将球踢出去
             if (playCount == Global.PLAY_COUNT)
             {
-                if (Input.GetKeyDown(KeyCode.L))
-                {
-                    playLeft();
-                    mainUI.textLeft.text = Global.TEXT_LEFT;
-                    mainUI.textRight.text = "";
-                }
-                else if (Input.GetKeyDown(KeyCode.R))
-                {
-                    playRight();
-                    mainUI.textLeft.text = "";
-                    mainUI.textRight.text = Global.TEXT_RIGHT;
-                }
+                //if (Input.GetKeyDown(KeyCode.L))
+                //{
+                //    playLeft();
+                //    mainUI.textLeft.text = Global.TEXT_LEFT;
+                //    mainUI.textRight.text = "";
+                //}
+                //else if (Input.GetKeyDown(KeyCode.R))
+                //{
+                //    playRight();
+                //    mainUI.textLeft.text = "";
+                //    mainUI.textRight.text = Global.TEXT_RIGHT;
+                //}
+                playKick();
                 Debug.Log("------------------"+playCount);
                 //StartCoroutine("StartShoot");
                 move = true;
@@ -110,9 +123,8 @@ public class AnimController4 : MonoBehaviour {
         //游戏结束，切换相机
         if (playCount > Global.PLAY_COUNT)
         {
-
-            camera_main.SetActive(false);
-            camera_end.SetActive(true);
+            timer.Update(Time.deltaTime);
+            
         }
 
         //最后踢球
@@ -177,6 +189,13 @@ public class AnimController4 : MonoBehaviour {
         animator.SetTrigger("rightFirst");
         playCount++;
         Debug.Log(playCount);
+    }
+
+    void playKick()
+    {
+        animator.SetTrigger("kick");
+        playCount++;
+
     }
 
     public void Restart()

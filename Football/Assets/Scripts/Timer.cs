@@ -90,4 +90,9 @@ public class Timer  {
     {
         f_TriggerTime = second;
     }
+
+    public float GetCurTime()
+    {
+        return f_CurTime;
+    }
 }

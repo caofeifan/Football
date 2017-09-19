@@ -11,6 +11,7 @@ public class MainUI : MonoBehaviour {
     public Text tips;
     public Text textRight;
     public Text textLeft;
+    private float curTime;
 
     void Init()
     {
@@ -38,12 +39,15 @@ public class MainUI : MonoBehaviour {
 		if(mainController.content == "0")
         {
             tipImage.SetActive(false);
-            tips.text = "未采集";
+            curTime = mainController.timer.GetCurTime();
+            tips.text = "未采集  "+ curTime.ToString("0")+"s";
+            ;
         }
         else
         {
             tipImage.SetActive(true);
-            tips.text = "采集脑电信号中";
+            curTime = mainController.timer.GetCurTime();
+            tips.text = "采集中" + curTime.ToString("0")+"s";
             textLeft.text = "";
             textRight.text = "";
         }
