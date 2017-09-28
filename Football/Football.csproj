@@ -123,13 +123,16 @@
     <Compile Include="Assets\Addons\CameraPathCreator\DEMO\CPC_DEMO_UpDown.cs" />
     <Compile Include="Assets\Addons\CameraPathCreator\Scripts\CPC_CameraPath.cs" />
     <Compile Include="Assets\Scripts\AnimController4.cs" />
+    <Compile Include="Assets\Scripts\AnimController5.cs" />
     <Compile Include="Assets\Scripts\ButtonsOnClick.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraController1.cs" />
+    <Compile Include="Assets\Scripts\CameraController2.cs" />
     <Compile Include="Assets\Scripts\Global.cs" />
     <Compile Include="Assets\Scripts\MainUI.cs" />
     <Compile Include="Assets\Scripts\MianController.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
+    <Compile Include="Assets\Scripts\Utils\FileOperate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\A_Flick Football\Readme.txt" />

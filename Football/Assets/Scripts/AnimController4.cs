@@ -130,7 +130,7 @@ public class AnimController4 : MonoBehaviour {
         //最后踢球
         if (move)
         {
-            Shoot();
+            ball.GetComponent<Rigidbody>().AddForce(Vector3.up * 10);
         }
     }
     //最后踢球

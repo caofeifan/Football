@@ -115,7 +115,7 @@ public class CameraController1 : MonoBehaviour {
     {
         if(rotation.eulerAngles.y > 0)
         {
-            //  transform.rotation = Quaternion.Slerp(avatar.transform.rotation, targetRotation, Time.deltaTime*2);
+              transform.rotation = Quaternion.Slerp(avatar.transform.rotation, targetRotation, Time.deltaTime*2);
             transform.RotateAround(avatar.transform.position, new Vector3(0, 1f, 0), 30f * Time.deltaTime);
             
         }

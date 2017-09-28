@@ -9,26 +9,26 @@ public class ButtonsOnClick : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        avatar = GameObject.Find("DefaultAvatar");
-        camera = GameObject.Find("Camera02");
+        //avatar = GameObject.Find("DefaultAvatar");
+        //camera = GameObject.Find("Camera02");
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-    //点击再来一次
-    public void OneMoreOnClick()//
-    {
-        Debug.Log("\"再来一次\"  被点击了");
+    ////点击再来一次
+    //public void OneMoreOnClick()//
+    //{
+    //    Debug.Log("\"再来一次\"  被点击了");
 
-        //重置人物
-        avatar.GetComponent<AnimController4>().Restart();
-        //重置Camera
-        camera.GetComponent<CameraController1>().Restart();
-        //重置显示界面
-        GameObject.Find("Canvas1").GetComponent<MainUI>().Restart();
-    }
+    //    //重置人物
+    //    avatar.GetComponent<AnimController5>().Restart();
+    //    //重置Camera
+    //    camera.GetComponent<CameraController2>().Restart();
+    //    //重置显示界面
+    //    GameObject.Find("Canvas1").GetComponent<MainUI>().Restart();
+    //}
 
     //点击退出
     public void CloseOnClick()
